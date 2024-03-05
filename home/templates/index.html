@@ -1,0 +1,44 @@
+{% extends "base.html" %}    
+{% block start %}
+    <h1>Welcome in Django.</h1>
+    <a href="/contact/"  style="text-decoration:none">Contact</a>     <!-- this is not better way -->
+    |
+    <a href="/about/"  style="text-decoration:none">About Us</a>       <!-- this is not better way -->
+    <hr>
+    {{people}}
+    <p>Printing above array element in tabular form. </p>
+
+    <div class=" container">
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th>Sr.</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Can Vote</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {%  for person in people %}
+            <td>{{forloop.counter}}</td>
+            <td>{{person.name}}</td>
+            <td>{{person.age}}</td>
+            <td {% if person.age  >= 18 %} style = "color:green" {% else %} style = "color:red" {% endif %}>
+                {% if person.age >= 18 %}
+                <h5>yes
+                    <i class="bi bi-hand-thumbs-up"></i>
+                </h5>
+                {% else %}
+                <h5>no
+                    <i class="bi bi-hand-thumbs-down"></i>
+                </h5>
+                 {% endif %}
+            </td>
+        </tr>
+    </tbody>
+        {% endfor %}
+    </table>
+</div>
+   
+{% endblock %}
